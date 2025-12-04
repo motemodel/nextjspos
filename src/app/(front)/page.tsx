@@ -1,6 +1,11 @@
 'use client'
+
+import Hero from "@/components/hero";
+
 export default function Home() {
   return (
-    <div className="bg-amber-50">สวัสดี Home Page</div>
+    <div>
+      <Hero/>
+    </div>
   );
 }
