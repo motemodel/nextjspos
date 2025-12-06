@@ -12,7 +12,7 @@ export default function Hero() {
           className="rounded-full py-1 border-border"
           asChild
         >
-          <Link href="#">
+          <Link href="/product">
             Just released v1.0.0 <ArrowUpRight className="ml-1 size-4" />
           </Link>
         </Badge>

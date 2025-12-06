@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Prompt } from "next/font/google";
 import "../globals.css";
+import AppQueryProvider from "../components/AppQueryProvider";
+import { Toaster } from "@/components/ui/sonner";
 
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
+const prompt = Prompt({
+    variable: "--font-prompt",
+    subsets: ["thai"],
+    display: "swap",
+    preload: true,
+    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -24,12 +24,11 @@ export default function BackLayout({
 }>) {
     return (
         <html lang="th">
-            <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-            >
-                <h1>Dashboard POS YIM</h1>
-                <hr />
-                {children}
+            <body className={`${prompt.className} antialiased`}>
+                <AppQueryProvider>
+                    {children}
+                    <Toaster richColors={true} />
+                </AppQueryProvider>
             </body>
         </html>
     );
