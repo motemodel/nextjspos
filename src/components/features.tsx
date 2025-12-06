@@ -1,7 +1,7 @@
 import AppLoading from "@/app/components/AppLoading";
-import { useProduct } from "@/hooks/use-Product";
+import { useProduct } from "@/hooks/use-product";
 
-const Features = () => {
+function Features() {
   const { products, loading, error } = useProduct();
   if (loading) return <AppLoading />;
   if (error) return <div className="text-center text-red-500">Error: {error}</div>;
@@ -26,8 +26,8 @@ const Features = () => {
           ))}
         </div>
       </div>
-    </div >
+    </div>
   );
-};
+}
 
 export default Features;
