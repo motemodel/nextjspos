@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import "./globals.css";
 export default function GlobalNotFound() {
     return (

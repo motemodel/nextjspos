@@ -1,52 +1,11 @@
-import {
-  Blocks,
-  Bot,
-  ChartPie,
-  Film,
-  MessageCircle,
-  Settings2,
-} from "lucide-react";
-
-const features = [
-  {
-    icon: Settings2,
-    title: "Customizable Layouts",
-    description:
-      "Design your space with drag-and-drop simplicity—create grids, lists, or galleries in seconds.",
-  },
-  {
-    icon: Blocks,
-    title: "Interactive Widgets",
-    description:
-      "Embed polls, quizzes, or forms to keep your audience engaged.",
-  },
-  {
-    icon: Bot,
-    title: "AI-Powered Tools",
-    description:
-      "Generate summaries, auto-format content, or translate into multiple languages seamlessly.",
-  },
-  {
-    icon: Film,
-    title: "Media Integrations",
-    description:
-      "Connect with Spotify, Instagram, or your own media library for dynamic visuals and sound.",
-  },
-  {
-    icon: ChartPie,
-    title: "Advanced Analytics",
-    description:
-      "Track engagement, clicks, and user activity with intuitive charts and reports.",
-  },
-  {
-    icon: MessageCircle,
-    title: "Seamless Collaboration",
-    description:
-      "Comment, tag, and assign tasks directly within your documents.",
-  },
-];
+import AppLoading from "@/app/components/AppLoading";
+import { useProduct } from "@/hooks/use-Product";
 
 const Features = () => {
+  const { products, loading, error } = useProduct();
+  if (loading) return <AppLoading />;
+  if (error) return <div className="text-center text-red-500">Error: {error}</div>;
+
   return (
     <div className="min-h-screen flex items-center justify-center py-12">
       <div>
@@ -54,23 +13,20 @@ const Features = () => {
           รายการสินค้าทั้งหมด
         </h2>
         <div className="mt-10 sm:mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-(--breakpoint-lg) mx-auto px-6">
-          {features.map((feature) => (
+          {products && products.map((item) => (
             <div
-              key={feature.title}
-              className="flex flex-col border rounded-xl py-6 px-5"
-            >
-              <div className="mb-4 h-10 w-10 flex items-center justify-center bg-muted rounded-full">
-                <feature.icon className="size-5" />
-              </div>
-              <span className="text-lg font-semibold">{feature.title}</span>
+              key={item.id}
+              className="flex flex-col border rounded-xl py-6 px-5">
+
+              <span className="text-lg font-semibold">{item.barcode}</span>
               <p className="mt-1 text-foreground/80 text-[15px]">
-                {feature.description}
+                {item.name} {item.price} บาท
               </p>
             </div>
           ))}
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

@@ -7,7 +7,7 @@ type ProductErrorResponse = {
     message: string;
 }
 
-export default function UseProduct() {
+export function useProduct() {
     const { data, isFetching, error } = useQuery<ProductBackend[], AxiosError<ProductErrorResponse>>({
         queryKey: ["ProductData"],
         queryFn: fetchAllProduct,
